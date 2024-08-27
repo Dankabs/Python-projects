@@ -246,6 +246,14 @@ class MainGUI(tk.Frame):
             listbox.insert(tk.END, member.member_id)
         self.update_member_combobox()
 
+    def update_member_listbox(self, listbox):
+    listbox.delete(0, tk.END)
+    for member in self.library.members:
+        display_text = f"{member.name} ({member.member_id})"
+        listbox.insert(tk.END, display_text)
+    self.update_member_combobox()
+
+
     def update_member_combobox(self):
         self.member_combobox['values'] = [member.member_id for member in self.library.members]
 

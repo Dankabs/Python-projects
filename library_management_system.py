@@ -20,7 +20,7 @@ class Library:
     def __init__(self):
         self.books = []
         self.members = []
-        self.checkouts = {}  # {book_title: (member_id, due_date)}
+        self.checkouts = {}  
 
     def add_book(self, book):
         self.books.append(book)
@@ -31,14 +31,14 @@ class Library:
     def delete_book(self, book):
         if book in self.books:
             self.books.remove(book)
-            # Remove from checkouts if it exists
+          
             if book.title in self.checkouts:
                 del self.checkouts[book.title]
 
     def delete_member(self, member):
         if member in self.members:
             self.members.remove(member)
-            # Remove all checkouts for this member
+           
             self.checkouts = {title: (m_id, due_date) for title, (m_id, due_date) in self.checkouts.items() if m_id != member.member_id}
 
     def checkout_book(self, book, member, days):
